@@ -1,7 +1,7 @@
 provision-windows
 =================
 
-A batch file to provision a Windows machine in a virtual machine. At the moment, this is focusing on Windows XP.
+A batch file and registry file to provision Windows XP as a virtual machine guest. At the moment, it focuses on Windows XP, obtaining a memory footprint of a mere 128MB after boot. The only ports which are open (and, in any case, blocked by the firewall) are 135 and 139. 
 
 It strips down the automatically-started services to the bare minimum and removes certain autostarts (Java Updater, specifically).
 
