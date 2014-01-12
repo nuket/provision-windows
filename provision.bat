@@ -150,7 +150,7 @@ if not exist %GIT_VERSION%.exe (explorer https://msysgit.googlecode.com/files/%G
 
 if not exist %GIT_VERSION%.exe (
   echo Still downloading.
-  ping -n 1 127.0.0.1 > NUL
+  ping -n 3 127.0.0.1 > NUL
   goto :downloadInProgress)
 
 :downloadDone
