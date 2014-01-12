@@ -5,15 +5,38 @@ echo Disable unnecessary services
 echo,
 echo http://www.blackviper.com/windows-services/
 echo,
-echo BITS is required for Windows Update to work 
-echo (though as of April 2014, that's not going to matter anymore)
+echo ALG: We're not worrying about using Internet Connection Sharing.
+echo,
+echo AudioSrv: We don't need audio alerts or audio at all.
+echo,
+echo ERSvc: We don't need to send error reports to Microsoft.
+echo,
+echo helpsvc: A waste of resources even on a normal desktop.
+echo,
+echo JavaQuickStarterService: Uses RAM to preload Java base classes.
+echo,
+echo LanmanServer: Get rid of the Server service.
+echo,
+echo LmHosts: NetBIOS Helper
+echo,
+echo Nla: Network Location Awareness (NLA): Never was clear what this does.
+echo,
+echo ShellHWDetection: Probably not plugging a lot of devices into a VM.
+echo,
+echo srservice: System Restore Service isn't necessary when Windows is 
+echo            in a VM. Snapshot the VM from the outside.
+echo,
+echo TrkWks: Distributed Link Tracking Client was never clear what benefit
+echo         this /ever/ provided besides wasting RAM on millions of computers.
 echo,
 echo W32Time / Windows Time service is disabled as time is synchronized to
-echo virtual machine host
+echo virtual machine host's clock
+echo,
+echo wscsvc: Windows Security Center - I think I've got a handle on it.
 echo ---------------------------------------------------------------------
 echo,
 
-for %%S in (ALG, BITS, Dnscache, helpsvc, JavaQuickStarterService, LmHosts, PolicyAgent, ProtectedStorage, RemoteRegistry, Schedule, Spooler, SSDPSRV, Themes, W32Time) do (
+for %%S in (ALG, AudioSrv, ERSvc, helpsvc, JavaQuickStarterService, LanmanServer, LmHosts, Nla, PolicyAgent, ProtectedStorage, RemoteRegistry, Schedule, ShellHWDetection, Spooler, srservice, SSDPSRV, Themes, TrkWks, W32Time, wscsvc) do (
   echo sc config %%S start= disabled
   sc config %%S start= disabled
   
@@ -23,10 +46,21 @@ for %%S in (ALG, BITS, Dnscache, helpsvc, JavaQuickStarterService, LmHosts, Poli
 
 echo ---------------------------------------------------------------------
 echo Enable essential services
+echo,
+echo BITS is required for Windows Update to work 
+echo (though as of April 2014, that's not going to matter anymore)
+echo,
+echo EventSystem: required for SENS
+echo,
+echo Dnscache
+echo,
+echo SENS: System Event Notification Service (poweroffs, etc.)
+echo,
+echo wuauserv: Windows Update service
 echo ---------------------------------------------------------------------
 echo,
 
-for %%S in (SENS, EventSystem) do (
+for %%S in (BITS, EventSystem, Dnscache, SENS, wuauserv) do (
   echo sc config %%S start= demand
   sc config %%S start= demand
   
