@@ -1,5 +1,7 @@
 @echo off
 
+set GIT_VERSION=Git-1.8.5.2-preview20131230
+
 echo ---------------------------------------------------------------------
 echo Disable unnecessary services
 echo,
@@ -60,12 +62,28 @@ echo wuauserv: Windows Update service
 echo ---------------------------------------------------------------------
 echo,
 
-for %%S in (BITS, EventSystem, Dnscache, SENS, wuauserv) do (
+for %%S in (EventSystem, Dnscache, SENS) do (
   echo sc config %%S start= demand
   sc config %%S start= demand
   
   echo sc start %%S
   sc start %%S
+)
+
+echo ---------------------------------------------------------------------
+echo Disable Windows Update
+echo,
+echo It chews up huge amounts of CPU on my test system, so if you really
+echo /are/ running Windows in a production environment, reenable it.
+echo ---------------------------------------------------------------------
+echo,
+
+for %%S in (BITS, wuauserv) do (
+  echo sc config %%S start= disabled
+  sc config %%S start= disabled
+  
+  echo sc stop %%S
+  sc stop %%S
 )
 
 echo ---------------------------------------------------------------------
@@ -115,4 +133,52 @@ echo,
 
 rem w32tm /config /manualpeerlist:"0.de.pool.ntp.org time.windows.com time.nist.gov" /update
 
+echo ---------------------------------------------------------------------
+echo Install git
+echo,
+echo Save the file to the same folder as the provision.bat file:
+echo %CD%
+echo,
+echo Then run the Git installer, and make sure to select 
+echo "Run Git and included Unix tools from the Windows Command Prompt"
+echo ---------------------------------------------------------------------
+echo,
 
+if not exist %GIT_VERSION%.exe (explorer https://msysgit.googlecode.com/files/%GIT_VERSION%.exe)
+
+:downloadInProgress
+
+if not exist %GIT_VERSION%.exe (
+  echo Still downloading.
+  ping -n 1 127.0.0.1 > NUL
+  goto :downloadInProgress)
+
+:downloadDone
+
+start %GIT_VERSION%.exe
+
+echo ---------------------------------------------------------------------
+echo Pause batch file until Git is installed.
+echo ---------------------------------------------------------------------
+echo,
+
+:gitNotInstalled
+SET /P ANSWER=Have you installed the Git package (y/n/q)?
+
+if /i {%ANSWER%}=={y}   (goto :yes)
+if /i {%ANSWER%}=={Y}   (goto :yes)
+if /i {%ANSWER%}=={yes} (goto :yes)
+if /i {%ANSWER%}=={q}   (goto :end)
+
+goto :gitNotInstalled
+
+:yes 
+
+echo,
+echo ---------------------------------------------------------------------
+echo Now pull and deploy other items using Git's curl and tar commands.
+echo ---------------------------------------------------------------------
+echo,
+
+
+:end
