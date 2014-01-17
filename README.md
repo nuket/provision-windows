@@ -6,10 +6,9 @@ tl;dr
 
 On a completely fresh system, open up a Command Line window and use `explorer.exe` to pull down `provision.bat`:
 
-    explorer.exe https://github.com/nuket/provision-windows/raw/provision.bat
-    explorer.exe https://github.com/nuket/provision-windows/raw/provision.reg
+    explorer.exe https://github.com/nuket/provision-windows/archive/master.zip
     
-Save these in the same folder, then run `provision.bat`.
+Save this in a folder, unpack it, and then run `provision.bat`.
 
 What is this?
 -------------
