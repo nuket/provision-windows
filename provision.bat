@@ -10,6 +10,7 @@ echo ---------------------------------------------------------------------
 echo,
 
 copy /y "Command Prompt.lnk" "c:\windows\system32\config\systemprofile\Start Menu\Programs\Accessories"
+copy /y "Command Prompt.lnk" "%USERPROFILE%\Start Menu\Programs\Accessories"
 
 echo ---------------------------------------------------------------------
 echo Disable unnecessary services
