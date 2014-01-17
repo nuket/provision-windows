@@ -2,6 +2,15 @@
 
 set GIT_VERSION=Git-1.8.5.2-preview20131230
 
+echo,
+echo ---------------------------------------------------------------------
+echo Copy modified Command Prompt.lnk to 
+echo c:\windows\system32\config\systemprofile\Start Menu\Programs\Accessories
+echo ---------------------------------------------------------------------
+echo,
+
+copy /y "Command Prompt.lnk" "c:\windows\system32\config\systemprofile\Start Menu\Programs\Accessories"
+
 echo ---------------------------------------------------------------------
 echo Disable unnecessary services
 echo,
@@ -179,6 +188,5 @@ echo ---------------------------------------------------------------------
 echo Now pull and deploy other items using Git's curl and tar commands.
 echo ---------------------------------------------------------------------
 echo,
-
 
 :end
