@@ -17,4 +17,6 @@ A batch file and registry file to provision Windows XP as a virtual machine gues
 
 It strips down the automatically-started services to the bare minimum and removes certain autostarts (Java Updater, specifically).
 
+It sets the console to Lucida Console, 150x50, with 3000 scrollback lines.
+
 It's certainly not as powerful as Puppet or Chef, but it's still light enough to free up some resources. The idea is to run as lightweight of a VM as possible, which means as few background services and eye-candy as possible.
