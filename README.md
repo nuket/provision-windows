@@ -6,7 +6,10 @@ tl;dr
 
 On a completely fresh system, open up a Command Line window and use `explorer.exe` to pull down `provision.bat`:
 
-    `explorer.exe provision.bat`
+    explorer.exe https://github.com/nuket/provision-windows/raw/provision.bat
+    explorer.exe https://github.com/nuket/provision-windows/raw/provision.reg
+    
+Save these in the same folder, then run `provision.bat`.
 
 What is this?
 -------------
