@@ -165,6 +165,9 @@ if not exist %GIT_VERSION%.exe (
 
 :downloadDone
 
+rem Wait briefly to allow iexplorer to copy the file to the save location.
+ping -n 3 127.0.0.1 > NUL
+
 start %GIT_VERSION%.exe
 
 echo ---------------------------------------------------------------------
