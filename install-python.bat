@@ -3,7 +3,7 @@
 set PYTHON_VERSION=2.7.6
 set PYTHON_MSI=python-%PYTHON_VERSION%.msi
 set PYTHON_EXE=c:\\Python2.7\\python.exe
-set PYTHON_PATH="C:\Python27;c:\Python27\Scripts"
+set PYTHON_PATH=C:\Python27;c:\Python27\Scripts
 
 echo,
 echo ------------------------------------------------------------------
