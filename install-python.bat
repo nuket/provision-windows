@@ -2,8 +2,8 @@
 
 set PYTHON_VERSION=2.7.6
 set PYTHON_MSI=python-%PYTHON_VERSION%.msi
-set PYTHON_EXE=c:\\Python2.7\\python.exe
-set PYTHON_PATH=C:\Python27;c:\Python27\Scripts
+set PYTHON_EXE=c:\Python27\python.exe
+set PYTHON_PATH=c:\Python27;c:\Python27\Scripts
 
 echo,
 echo ------------------------------------------------------------------
@@ -13,7 +13,7 @@ echo,
 
 if not exist %PYTHON_EXE% (
 if not exist %PYTHON_MSI% (
-  curl -L -O http://python.org/ftp/python/%PYTHON_VERSION%/%PYTHON_MSI%
+    curl -L -O http://python.org/ftp/python/%PYTHON_VERSION%/%PYTHON_MSI%
 )
 )
 
@@ -26,6 +26,9 @@ echo,
 if not exist %PYTHON_EXE% (
 if exist %PYTHON_MSI% (
     msiexec.exe /qb /i %PYTHON_MSI% ALLUSERS=1 ADDLOCAL=ALL
+) else (
+    echo Python installer package didn't seem to download correctly.
+    exit /b 1
 )
 )
 
@@ -35,11 +38,21 @@ echo Add Python to PATH
 echo ------------------------------------------------------------------
 echo,
 
+rem Add the PYTHON_PATH to the PATH environment variable.
+
 rem reg add "HKCU\Environment" /v PATH /t REG_EXPAND_SZ /d "%PYTHON_PATH%"
 rem reg add "HKLM\SYSTEM\ControlSet001\Control\Session Manager\Environment" /v PATH /t REG_EXPAND_SZ /d "%PATH%;c:\Python27;c:\Python27\Scripts"
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v PATH /t REG_EXPAND_SZ /d "%PATH%;%PYTHON_PATH%"
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /f /v PATH /t REG_EXPAND_SZ /d "%PATH%;%PYTHON_PATH%"
 
-rem Temporarily set the path.
+rem Set LOCALAPPDATA to APPDATA, otherwise distlib will throw errors.
+rem See: https://vilimpoc.org/blog/2014/01/18/time-robbing-python-errors/
+
+reg add "HKLM\System\CurrentControlSet\Control\Session Manager\Environment" /f /v LOCALAPPDATA /t REG_EXPAND_SZ /d "%%APPDATA%%"
+
+rem Temporarily set LOCALAPPDATA.
+set LOCALAPPDATA=%APPDATA%
+
+rem Temporarily set the path, so we can use the python command.
 set PATH=%PATH%;%PYTHON_PATH%
 
 echo,
@@ -68,4 +81,9 @@ echo,
 
 pip install virtualenv
 
-
+echo,
+echo ------------------------------------------------------------------
+echo Python %PYTHON_VERSION%, easy_install, pip, and virtualenv are 
+echo now installed!
+echo ------------------------------------------------------------------
+echo,
