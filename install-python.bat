@@ -78,7 +78,7 @@ echo ------------------------------------------------------------------
 echo,
 
 if exist %PYWIN_EXE% (
-    start %PYWIN_EXE%
+    start /wait %PYWIN_EXE%
 ) else (
     echo pywin32 installer didn't seem to download correctly.
     exit /b 1
