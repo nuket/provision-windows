@@ -4,6 +4,7 @@ set PYTHON_VERSION=2.7.6
 set PYTHON_MSI=python-%PYTHON_VERSION%.msi
 set PYTHON_EXE=c:\Python27\python.exe
 set PYTHON_PATH=c:\Python27;c:\Python27\Scripts
+set PYTHON_APPDATA=c:\Python27\AppData
 
 echo,
 echo ------------------------------------------------------------------
@@ -47,7 +48,8 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /f /
 rem Set LOCALAPPDATA to APPDATA, otherwise distlib will throw errors.
 rem See: https://vilimpoc.org/blog/2014/01/18/time-robbing-python-errors/
 
-reg add "HKLM\System\CurrentControlSet\Control\Session Manager\Environment" /f /v LOCALAPPDATA /t REG_EXPAND_SZ /d "%%APPDATA%%"
+mkdir %PYTHON_APPDATA%
+reg add "HKLM\System\CurrentControlSet\Control\Session Manager\Environment" /f /v LOCALAPPDATA /t REG_SZ /d "%PYTHON_APPDATA%"
 
 rem Temporarily set LOCALAPPDATA.
 set LOCALAPPDATA=%APPDATA%
