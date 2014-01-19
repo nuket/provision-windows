@@ -6,7 +6,7 @@ tl;dr
 
 On a completely fresh system, open up a Command Prompt and use `explorer.exe` to pull down the provisioning files:
 
-    explorer https://github.com/nuket/provision-windows/archive/master.zip
+    explorer http://git.io/-ggbHQ
     
 Save this in a folder, unpack it, and then run `provision.bat`. Make sure to save the Git and Python downloads to the same folder containing `provision.bat`. 
 
