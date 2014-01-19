@@ -188,6 +188,10 @@ goto :checkGitInstalled
 
 :yes
 
+rem This is added to the system-level Environment, but only becomes
+rem active after logging out and logging back in, so we add it explicitly
+rem here to temporarily gain access to Git's curl and tar commands.
+
 set PATH=%PATH%;%PROGRAMFILES%\Git\cmd;%PROGRAMFILES%\Git\bin
 
 :no
