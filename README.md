@@ -4,11 +4,11 @@ provision-windows
 tl;dr
 -----
 
-On a completely fresh system, open up a Command Line window and use `explorer.exe` to pull down `provision.bat`:
+On a completely fresh system, open up a Command Prompt and use `explorer.exe` to pull down the provisioning files:
 
-    explorer.exe https://github.com/nuket/provision-windows/archive/master.zip
+    explorer https://github.com/nuket/provision-windows/archive/master.zip
     
-Save this in a folder, unpack it, and then run `provision.bat`.
+Save this in a folder, unpack it, and then run `provision.bat`. Make sure to save the Git and Python downloads to the same folder containing `provision.bat`. 
 
 What is this?
 -------------
@@ -20,5 +20,7 @@ It strips down the automatically-started services to the bare minimum and remove
 It sets the console to Lucida Console, 150x50, with 3000 scrollback lines.
 
 It installs Git, which brings a bunch of Unix-style commands with it, most importantly including `curl`, which can be used for further simple software downloads.
+
+It installs Python, easy_install, pip, and virtualenv, and sets the PATH to make these available to all accounts.
 
 It's certainly not as powerful as Puppet or Chef, but it's still light enough to free up some resources. The idea is to run as lightweight of a VM as possible, which means as few background services and eye-candy as possible.
