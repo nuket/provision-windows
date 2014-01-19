@@ -6,6 +6,9 @@ set PYTHON_EXE=c:\Python27\python.exe
 set PYTHON_PATH=c:\Python27;c:\Python27\Scripts
 set PYTHON_APPDATA=c:\Python27\AppData
 
+set PYWIN_BUILD=218
+set PYWIN_EXE=pywin32-%PYWIN_BUILD%.win32-py2.7.exe
+
 echo,
 echo ------------------------------------------------------------------
 echo Download Python
@@ -59,6 +62,30 @@ set PATH=%PATH%;%PYTHON_PATH%
 
 echo,
 echo ------------------------------------------------------------------
+echo Download pywin32
+echo ------------------------------------------------------------------
+echo,
+
+if not exist %PYWIN_EXE% (
+    echo "http://downloads.sourceforge.net/project/pywin32/pywin32/Build%%20%PYWIN_BUILD%/%PYWIN_EXE%"
+    curl -L -O "http://downloads.sourceforge.net/project/pywin32/pywin32/Build%%20%PYWIN_BUILD%/%PYWIN_EXE%"
+)
+
+echo,
+echo ------------------------------------------------------------------
+echo Install pywin32
+echo ------------------------------------------------------------------
+echo,
+
+if exist %PYWIN_EXE% (
+    start %PYWIN_EXE%
+) else (
+    echo pywin32 installer didn't seem to download correctly.
+    exit /b 1
+)
+
+echo,
+echo ------------------------------------------------------------------
 echo Add easy_install
 echo ------------------------------------------------------------------
 echo,
@@ -85,7 +112,6 @@ pip install virtualenv
 
 echo,
 echo ------------------------------------------------------------------
-echo Python %PYTHON_VERSION%, easy_install, pip, and virtualenv are 
-echo now installed!
+echo Python %PYTHON_VERSION%, easy_install, pip, and virtualenv are installed!
 echo ------------------------------------------------------------------
 echo,
