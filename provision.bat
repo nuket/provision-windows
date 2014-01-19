@@ -194,8 +194,6 @@ rem here to temporarily gain access to Git's curl and tar commands.
 
 set PATH=%PATH%;%PROGRAMFILES%\Git\cmd;%PROGRAMFILES%\Git\bin
 
-:no
-
 echo,
 echo ---------------------------------------------------------------------
 echo Now pull and deploy other items using Git's curl and tar commands.
@@ -203,5 +201,7 @@ echo ---------------------------------------------------------------------
 echo,
 
 call install-python.bat
+
+:no
 
 :end
