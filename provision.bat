@@ -175,22 +175,29 @@ echo Pause batch file until Git is installed.
 echo ---------------------------------------------------------------------
 echo,
 
-:gitNotInstalled
+:checkGitInstalled
 SET /P ANSWER=Have you installed the Git package (y/n/q)?
 
 if /i {%ANSWER%}=={y}   (goto :yes)
 if /i {%ANSWER%}=={Y}   (goto :yes)
 if /i {%ANSWER%}=={yes} (goto :yes)
+if /i {%ANSWER%}=={n}   (goto :no)
 if /i {%ANSWER%}=={q}   (goto :end)
 
-goto :gitNotInstalled
+goto :checkGitInstalled
 
-:yes 
+:yes
+
+set PATH=%PATH%;%PROGRAMFILES%\Git\cmd;%PROGRAMFILES%\Git\bin
+
+:no
 
 echo,
 echo ---------------------------------------------------------------------
 echo Now pull and deploy other items using Git's curl and tar commands.
 echo ---------------------------------------------------------------------
 echo,
+
+call install-python.bat
 
 :end
