@@ -52,7 +52,7 @@ mkdir %PYTHON_APPDATA%
 reg add "HKLM\System\CurrentControlSet\Control\Session Manager\Environment" /f /v LOCALAPPDATA /t REG_SZ /d "%PYTHON_APPDATA%"
 
 rem Temporarily set LOCALAPPDATA.
-set LOCALAPPDATA=%APPDATA%
+set LOCALAPPDATA=%PYTHON_APPDATA%
 
 rem Temporarily set the path, so we can use the python command.
 set PATH=%PATH%;%PYTHON_PATH%
