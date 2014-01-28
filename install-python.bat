@@ -69,13 +69,14 @@ echo,
 if not exist %PYWIN_EXE% (
     echo "http://downloads.sourceforge.net/project/pywin32/pywin32/Build%%20%PYWIN_BUILD%/%PYWIN_EXE%"
     curl -L -O "http://downloads.sourceforge.net/project/pywin32/pywin32/Build%%20%PYWIN_BUILD%/%PYWIN_EXE%"
+    copy /y %PYWIN_EXE% c:\Python27
 )
 
-echo,
-echo ------------------------------------------------------------------
-echo Install pywin32
-echo ------------------------------------------------------------------
-echo,
+rem echo,
+rem echo ------------------------------------------------------------------
+rem echo Install pywin32
+rem echo ------------------------------------------------------------------
+rem echo,
 
 rem if exist %PYWIN_EXE% (
 rem     start /wait %PYWIN_EXE%
