@@ -62,6 +62,16 @@ set PATH=%PATH%;%PYTHON_PATH%
 
 echo,
 echo ------------------------------------------------------------------
+echo Fix permissions so that Lib\site-packages and Scripts are read-
+echo write capable for Limited User Accounts.
+echo ------------------------------------------------------------------
+echo,
+
+
+
+
+echo,
+echo ------------------------------------------------------------------
 echo Download pywin32
 echo ------------------------------------------------------------------
 echo,
@@ -71,6 +81,7 @@ if not exist %PYWIN_EXE% (
     curl -L -O "http://downloads.sourceforge.net/project/pywin32/pywin32/Build%%20%PYWIN_BUILD%/%PYWIN_EXE%"
     copy /y %PYWIN_EXE% c:\Python27
 )
+
 
 rem echo,
 rem echo ------------------------------------------------------------------
@@ -85,40 +96,40 @@ rem     echo pywin32 installer didn't seem to download correctly.
 rem     exit /b 1
 rem )
 
-rem echo,
-rem echo ------------------------------------------------------------------
-rem echo Add easy_install
-rem echo ------------------------------------------------------------------
-rem echo,
+echo,
+echo ------------------------------------------------------------------
+echo Add easy_install
+echo ------------------------------------------------------------------
+echo,
 
-rem if not exist ez_setup.py (
-rem     curl -O https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
-rem )
+if not exist ez_setup.py (
+    curl -O https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+)
 
-rem python ez_setup.py
-
-rem echo,
-rem echo ------------------------------------------------------------------
-rem echo Add pip
-rem echo ------------------------------------------------------------------
-rem echo,
-
-rem if not exist get-pip.py (
-rem     curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
-rem )
-
-rem python get-pip.py
-
-rem echo,
-rem echo ------------------------------------------------------------------
-rem echo Add virtualenv
-rem echo ------------------------------------------------------------------
-rem echo,
-
-rem pip install virtualenv
+python ez_setup.py
 
 echo,
 echo ------------------------------------------------------------------
-echo Python %PYTHON_VERSION% installed!
+echo Add pip
+echo ------------------------------------------------------------------
+echo,
+
+if not exist get-pip.py (
+    curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+)
+
+python get-pip.py
+
+echo,
+echo ------------------------------------------------------------------
+echo Add virtualenv
+echo ------------------------------------------------------------------
+echo,
+
+pip install virtualenv
+
+echo,
+echo ------------------------------------------------------------------
+echo Python %PYTHON_VERSION%, easy_install, pip, and virtual installed!
 echo ------------------------------------------------------------------
 echo,
