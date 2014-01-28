@@ -135,7 +135,7 @@ echo according to cacls output.
 echo ------------------------------------------------------------------
 echo,
 
-echo y| cacls c:\Python27\Lib\site-packages\*.* /E /G BUILDIN\Users:R
+echo y| cacls c:\Python27\Lib\site-packages\*.* /E /G BUILTIN\Users:R
 
 echo,
 echo ------------------------------------------------------------------
