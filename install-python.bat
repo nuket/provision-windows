@@ -77,12 +77,12 @@ echo Install pywin32
 echo ------------------------------------------------------------------
 echo,
 
-if exist %PYWIN_EXE% (
-    start /wait %PYWIN_EXE%
-) else (
-    echo pywin32 installer didn't seem to download correctly.
-    exit /b 1
-)
+rem if exist %PYWIN_EXE% (
+rem     start /wait %PYWIN_EXE%
+rem ) else (
+rem     echo pywin32 installer didn't seem to download correctly.
+rem     exit /b 1
+rem )
 
 echo,
 echo ------------------------------------------------------------------
@@ -102,16 +102,16 @@ echo,
 curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 python get-pip.py
 
-echo,
-echo ------------------------------------------------------------------
-echo Add virtualenv
-echo ------------------------------------------------------------------
-echo,
+rem echo,
+rem echo ------------------------------------------------------------------
+rem echo Add virtualenv
+rem echo ------------------------------------------------------------------
+rem echo,
 
-pip install virtualenv
+rem pip install virtualenv
 
 echo,
 echo ------------------------------------------------------------------
-echo Python %PYTHON_VERSION%, easy_install, pip, and virtualenv are installed!
+echo Python %PYTHON_VERSION%, easy_install, and pip are installed!
 echo ------------------------------------------------------------------
 echo,
