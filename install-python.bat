@@ -90,7 +90,10 @@ echo Add easy_install
 echo ------------------------------------------------------------------
 echo,
 
-curl -O https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+if not exist ez_setup.py (
+    curl -O https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+)
+
 python ez_setup.py
 
 echo,
@@ -99,7 +102,10 @@ echo Add pip
 echo ------------------------------------------------------------------
 echo,
 
-curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+if not exist get-pip.py (
+    curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+)
+
 python get-pip.py
 
 rem echo,
