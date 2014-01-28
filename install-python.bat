@@ -85,29 +85,29 @@ rem     echo pywin32 installer didn't seem to download correctly.
 rem     exit /b 1
 rem )
 
-echo,
-echo ------------------------------------------------------------------
-echo Add easy_install
-echo ------------------------------------------------------------------
-echo,
+rem echo,
+rem echo ------------------------------------------------------------------
+rem echo Add easy_install
+rem echo ------------------------------------------------------------------
+rem echo,
 
-if not exist ez_setup.py (
-    curl -O https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
-)
+rem if not exist ez_setup.py (
+rem     curl -O https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+rem )
 
-python ez_setup.py
+rem python ez_setup.py
 
-echo,
-echo ------------------------------------------------------------------
-echo Add pip
-echo ------------------------------------------------------------------
-echo,
+rem echo,
+rem echo ------------------------------------------------------------------
+rem echo Add pip
+rem echo ------------------------------------------------------------------
+rem echo,
 
-if not exist get-pip.py (
-    curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
-)
+rem if not exist get-pip.py (
+rem     curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+rem )
 
-python get-pip.py
+rem python get-pip.py
 
 rem echo,
 rem echo ------------------------------------------------------------------
@@ -119,6 +119,6 @@ rem pip install virtualenv
 
 echo,
 echo ------------------------------------------------------------------
-echo Python %PYTHON_VERSION%, easy_install, and pip are installed!
+echo Python %PYTHON_VERSION% installed!
 echo ------------------------------------------------------------------
 echo,
