@@ -132,6 +132,8 @@ echo,
 echo ------------------------------------------------------------------
 echo Fix Lib\site-packages permissions to include BUILTIN\Users:R
 echo according to cacls output.
+echo
+echo Have to do this recursively all the way down.
 echo ------------------------------------------------------------------
 echo,
 
